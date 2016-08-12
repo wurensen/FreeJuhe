@@ -1,8 +1,8 @@
 package com.wurensen.freejuhe.common.mvp;
 
 /**
- * 定义MVP模式的基本结构
  * Created by wrs on 2016/8/12.
+ * 定义MVP模式的基本结构
  */
 public interface MVP {
 
@@ -10,6 +10,16 @@ public interface MVP {
      * V层接口
      */
     interface View {
+
+        /**
+         * 显示加载中对话框
+         */
+        void showLoadingDialog();
+
+        /**
+         * 隐藏加载中对话框
+         */
+        void dismissLoadingDialog();
     }
 
     /**
