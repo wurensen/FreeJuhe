@@ -25,7 +25,19 @@ public interface MVP {
     /**
      * P层接口
      */
-    interface Presenter {
+    interface Presenter<V extends View> {
+
+        /**
+         * 将V层与P层进行绑定
+         *
+         * @param mvpView V层对象
+         */
+        void attachView(V mvpView);
+
+        /**
+         * 将V层与P层进行解绑
+         */
+        void detachView();
     }
 
     /**
