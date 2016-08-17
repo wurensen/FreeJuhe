@@ -10,10 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".home.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:showIn="@layout/main_app_bar">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Welcome!\n这个一个接入免费API的demo，架构采用MVP+retrofit2+RxAndroid"
+        android:textSize="20dp" />
 </RelativeLayout>

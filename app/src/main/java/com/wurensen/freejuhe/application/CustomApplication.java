@@ -13,14 +13,21 @@ import com.wurensen.freejuhe.BuildConfig;
  */
 public class CustomApplication extends Application {
 
-    // 代理
+    private static CustomApplication mInstance;
+
+    // 业务代理
     private ApplicationDelegate mApplicationDelegate;
+
+    public static ApplicationDelegate getDelegate() {
+        return mInstance.mApplicationDelegate;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         initDebugPlugin();
 
+        mInstance = this;
         mApplicationDelegate = new ApplicationDelegate(this);
         mApplicationDelegate.onCreate();
     }
@@ -33,9 +40,8 @@ public class CustomApplication extends Application {
         LeakCanary.install(this);
 
         // 日志
-
         Logger.init()               // default PRETTYLOGGER or use just init()
-                .logLevel(BuildConfig.DEBUG ? LogLevel.FULL : LogLevel.NONE)        // default LogLevel.FULL,
+                .logLevel(BuildConfig.LOG_DEBUG ? LogLevel.FULL : LogLevel.NONE)        // default LogLevel.FULL,
 //                .methodCount(1)                 // default 2
 //                .hideThreadInfo()               // default shown
 //                .methodOffset(2)                // default 0

@@ -30,7 +30,7 @@ public class MainActivity extends BaseActivity<MainConstraint.Presenter> impleme
 
     @Override
     protected int getContentViewLayoutId() {
-        return R.layout.activity_main;
+        return R.layout.main_activity;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class MainActivity extends BaseActivity<MainConstraint.Presenter> impleme
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main_activity_menu, menu);
         return true;
     }
 
@@ -98,7 +98,7 @@ public class MainActivity extends BaseActivity<MainConstraint.Presenter> impleme
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Logger.i("item=%s", item.getTitle());
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_dribbble) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 

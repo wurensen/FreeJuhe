@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
+apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
     compileSdkVersion 23
@@ -14,14 +15,40 @@ android {
     }
     buildTypes {
         debug {
-
+            // 自定义log开关
+            buildConfigField "boolean", "LOG_DEBUG", "true"
         }
 
         release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+dexcount {
+    /**
+     * format: The format of the method count output, either "list", "tree", "json", or "yaml".
+     includeClasses: When true, individual classes will be include in the package list - otherwise, only packages are included.
+     includeFieldCount: When true, the number of fields in a package or class will be included in the printed output.
+     includeTotalMethodCount: When true, the total number of methods in the application will be included in the printed output.
+     orderByMethodCount: When true, packages will be sorted in descending order by the number of methods they contain.
+     verbose: When true, the output file will also be printed to the build's standard output.
+     maxTreeDepth: Sets the max number of package segments in the output - i.e. when set to 2, counts stop at com.google, when set to 3 you get com.google.android, etc. "Unlimited" by default.
+     teamCityIntegration: When true, Team City integration strings will be printed.
+     enableForInstantRun: When true, count methods even for Instant Run builds. False by default.
+     */
+    format = "tree"
+    includeClasses = false
+    includeFieldCount = true
+    includeTotalMethodCount = false
+    orderByMethodCount = false
+    verbose = false
+    maxTreeDepth = Integer.MAX_VALUE
+    teamCityIntegration = false
+    enableForInstantRun = true
 }
 
 dependencies {
@@ -38,6 +65,10 @@ dependencies {
     // ButterKnife
     compile 'com.jakewharton:butterknife:8.2.1'
     apt 'com.jakewharton:butterknife-compiler:8.2.1'
+
+    // retrofit2
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
 
     // 内存泄漏
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
