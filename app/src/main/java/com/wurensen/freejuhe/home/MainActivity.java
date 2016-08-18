@@ -12,12 +12,12 @@ import android.view.MenuItem;
 
 import com.orhanobut.logger.Logger;
 import com.wurensen.freejuhe.R;
-import com.wurensen.freejuhe.common.activity.BaseActivity;
+import com.wurensen.freejuhe.common.activity.BaseMVPActivity;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity<MainConstraint.Presenter> implements
-        NavigationView.OnNavigationItemSelectedListener, MainConstraint.View {
+public class MainActivity extends BaseMVPActivity<MainContract.Presenter> implements
+        NavigationView.OnNavigationItemSelectedListener, MainContract.View {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -29,17 +29,17 @@ public class MainActivity extends BaseActivity<MainConstraint.Presenter> impleme
     NavigationView mNavView;
 
     @Override
-    protected int getContentViewLayoutId() {
+    public int onGetContentViewLayoutId() {
         return R.layout.main_activity;
     }
 
     @Override
-    protected MainConstraint.Presenter createPresenter() {
-        return new MainPresenterImpl();
+    public MainContract.Presenter onCreatePresenter() {
+        return new MainPresenter();
     }
 
     @Override
-    protected void initData() {
+    public void onInitData() {
         setSupportActionBar(mToolbar);
 
         mFab.setOnClickListener(new android.view.View.OnClickListener() {

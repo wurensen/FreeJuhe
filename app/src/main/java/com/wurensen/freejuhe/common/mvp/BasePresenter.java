@@ -2,7 +2,7 @@ package com.wurensen.freejuhe.common.mvp;
 
 /**
  * Created by wrs on 2016/8/12.
- * MVP抽象的P类，定义通用的方法
+ * MVP抽象的P类，实现通用的逻辑
  */
 public abstract class BasePresenter<V extends MVP.View> implements MVP.Presenter<V> {
 
@@ -10,7 +10,6 @@ public abstract class BasePresenter<V extends MVP.View> implements MVP.Presenter
      * V层
      */
     protected V mMvpView;
-
 
     @Override
     public void attachView(V mvpView) {

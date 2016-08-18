@@ -1,5 +1,7 @@
 package com.wurensen.freejuhe.common.mvp;
 
+import android.support.annotation.NonNull;
+
 /**
  * Created by wrs on 2016/8/12.
  * 定义MVP模式的基本结构
@@ -11,15 +13,6 @@ public interface MVP {
      */
     interface View {
 
-        /**
-         * 显示加载中对话框
-         */
-        void showLoadingDialog();
-
-        /**
-         * 隐藏加载中对话框
-         */
-        void dismissLoadingDialog();
     }
 
     /**
@@ -32,18 +25,12 @@ public interface MVP {
          *
          * @param mvpView V层对象
          */
-        void attachView(V mvpView);
+        void attachView(@NonNull V mvpView);
 
         /**
          * 将V层与P层进行解绑
          */
         void detachView();
-    }
-
-    /**
-     * M层接口
-     */
-    interface Model {
     }
 
 }
