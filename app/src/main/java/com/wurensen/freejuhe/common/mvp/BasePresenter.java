@@ -1,5 +1,7 @@
 package com.wurensen.freejuhe.common.mvp;
 
+import android.support.annotation.NonNull;
+
 /**
  * Created by wrs on 2016/8/12.
  * MVP抽象的P类，实现通用的逻辑
@@ -12,7 +14,7 @@ public abstract class BasePresenter<V extends MVP.View> implements MVP.Presenter
     protected V mMvpView;
 
     @Override
-    public void attachView(V mvpView) {
+    public void attachView(@NonNull V mvpView) {
         mMvpView = mvpView;
     }
 

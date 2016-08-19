@@ -12,12 +12,13 @@ import android.view.MenuItem;
 
 import com.orhanobut.logger.Logger;
 import com.wurensen.freejuhe.R;
-import com.wurensen.freejuhe.common.activity.BaseMVPActivity;
+import com.wurensen.freejuhe.common.activity.BaseActivity;
+import com.wurensen.freejuhe.dribbble.DribbbleActivity;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseMVPActivity<MainContract.Presenter> implements
-        NavigationView.OnNavigationItemSelectedListener, MainContract.View {
+public class MainActivity extends BaseActivity implements
+        NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -34,12 +35,7 @@ public class MainActivity extends BaseMVPActivity<MainContract.Presenter> implem
     }
 
     @Override
-    public MainContract.Presenter onCreatePresenter() {
-        return new MainPresenter();
-    }
-
-    @Override
-    public void onInitData() {
+    public void onAfterInitView() {
         setSupportActionBar(mToolbar);
 
         mFab.setOnClickListener(new android.view.View.OnClickListener() {
@@ -100,6 +96,7 @@ public class MainActivity extends BaseMVPActivity<MainContract.Presenter> implem
         Logger.i("item=%s", item.getTitle());
         if (id == R.id.nav_dribbble) {
             // Handle the camera action
+            DribbbleActivity.start(this);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

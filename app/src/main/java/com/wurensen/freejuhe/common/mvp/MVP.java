@@ -12,7 +12,6 @@ public interface MVP {
      * V层接口
      */
     interface View {
-
     }
 
     /**
