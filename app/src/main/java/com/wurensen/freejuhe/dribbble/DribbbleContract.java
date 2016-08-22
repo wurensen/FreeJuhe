@@ -1,6 +1,5 @@
 package com.wurensen.freejuhe.dribbble;
 
-import com.wurensen.freejuhe.common.mvp.BasePresenter;
 import com.wurensen.freejuhe.common.mvp.MVP;
 
 /**
@@ -13,7 +12,7 @@ public interface DribbbleContract {
 
     }
 
-    abstract class Presenter extends BasePresenter<View> {
+    interface Presenter extends MVP.Presenter<View> {
 
     }
 
