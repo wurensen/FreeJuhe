@@ -1,6 +1,7 @@
 package com.wurensen.freejuhe.common.net;
 
 import com.wurensen.freejuhe.application.ApplicationDelegate;
+import com.wurensen.freejuhe.dribbble.api.DribbbleApi;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,16 +15,21 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RequestManager {
 
+    private Retrofit mRetrofit;
+
     private RequestManager() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(7676, TimeUnit.MILLISECONDS)
+                .addInterceptor(new AuthorizationIterceptor())
                 .addInterceptor(new HttpLoggingInterceptor())
                 .build();
 
-        Retrofit retrofit = new Retrofit.Builder()
+        mRetrofit = new Retrofit.Builder()
+                .baseUrl(DribbbleApi.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(ApplicationDelegate.getInstance().getGson()))
                 .client(okHttpClient)
                 .build();
+
     }
 
     private static final class InstanceHolder {
@@ -39,5 +45,12 @@ public class RequestManager {
         return InstanceHolder.INSTANCE;
     }
 
-
+    /**
+     * 获取Retrofit实例
+     *
+     * @return Retrofit实例
+     */
+    public Retrofit getRetrofit() {
+        return mRetrofit;
+    }
 }
